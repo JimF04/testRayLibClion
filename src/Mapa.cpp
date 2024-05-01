@@ -13,8 +13,8 @@ Mapa::Mapa(int screenWidth, int screenHeight) : screenWidth(screenWidth), screen
     enemigo = Enemy();
 
     camera = { 0 };
-    camera.target = (Vector2){ screenWidth / 2, screenHeight / 2 };
-    camera.offset = (Vector2){ screenWidth / 2, screenHeight / 2 };
+    camera.target = (Vector2){ static_cast<float>(screenWidth / 2), static_cast<float>(screenHeight / 2) };
+    camera.offset = (Vector2){ static_cast<float>(screenWidth / 2), static_cast<float>(screenHeight / 2) };
     camera.rotation = 0.0f;
     camera.zoom = 1.0f;
 }
@@ -34,7 +34,7 @@ void Mapa::Update() {
 
     Vector2 projectedPosition = { ball.GetPosition().x + deltaX, ball.GetPosition().y + deltaY };
 
-    Rectangle ballRect = { projectedPosition.x - ball.GetRadius(), projectedPosition.y - ball.GetRadius(), ball.GetRadius() * 2, ball.GetRadius() * 2 };
+    Rectangle ballRect = { projectedPosition.x - ball.GetRadius(), projectedPosition.y - ball.GetRadius(), static_cast<float>(ball.GetRadius() * 2), static_cast<float>(ball.GetRadius() * 2) };
     if (!CheckCollisionRecs(ballRect, pared.GetCollisionRect()))
     {
         ball.Move(deltaX, deltaY);
